@@ -2,6 +2,8 @@
 
 Welcome to my portfolio! I'm a **Computer Science graduate** passionate about AI, web development, and solving real-world problems. I specialize in building modern, innovative digital solutions using cutting-edge technologies.
 
+**🌐 [Visit My Portfolio Website](https://Punitpritam788.github.io/Portfolio)**
+
 ## 🚀 About Me
 
 I'm a full-stack developer and AI enthusiast dedicated to creating impactful applications that bridge the gap between technology and user experience. My expertise spans:
@@ -10,6 +12,9 @@ I'm a full-stack developer and AI enthusiast dedicated to creating impactful app
 - **Artificial Intelligence**: Leveraging AI and machine learning for intelligent solutions
 - **API Development**: Designing robust and efficient APIs
 - **User Experience**: Crafting intuitive interfaces with a focus on usability
+
+**Portfolio Website**: [https://Punitpritam788.github.io/Portfolio](https://Punitpritam788.github.io/Portfolio)  
+**License**: MIT - See LICENSE file for details
 
 ## 💻 Tech Stack
 
@@ -35,6 +40,8 @@ This portfolio showcases my work across various domains. Each project demonstrat
 
 Browse through the projects in this repository to see practical examples of my work in action.
 
+Visit my **[live portfolio](https://Punitpritam788.github.io/Portfolio)** to see all projects with detailed descriptions and demonstrations.
+
 ## 🎯 What I'm Passionate About
 
 ✨ **Innovation** - Creating solutions that push boundaries and challenge the status quo  
@@ -47,6 +54,7 @@ Browse through the projects in this repository to see practical examples of my w
 I'm always interested in collaborating on innovative projects and discussing new ideas. Feel free to reach out!
 
 - **GitHub**: [@Punitpritam788](https://github.com/Punitpritam788)
+- **Portfolio Website**: [https://Punitpritam788.github.io/Portfolio](https://Punitpritam788.github.io/Portfolio)
 - **Repository**: [Punitpritam788/Portfolio](https://github.com/Punitpritam788/Portfolio)
 
 ## 📖 Repository Features
@@ -55,6 +63,7 @@ I'm always interested in collaborating on innovative projects and discussing new
 - **GitHub Pages**: Enabled for portfolio hosting and showcase
 - **Active Development**: Continuously updated with new projects and improvements
 - **Discussions Enabled**: Engage with the community and share ideas
+- **MIT Licensed**: Free to use, modify, and distribute under MIT License terms
 
 ## 🛠️ Technologies Used
 
@@ -73,7 +82,8 @@ This portfolio primarily showcases:
 
 2. Explore the projects folder to see different showcases
 3. Check individual project README files for specific setup instructions
-4. Feel free to fork, contribute, or use as inspiration for your own work
+4. Visit the [live portfolio](https://Punitpritam788.github.io/Portfolio) to see projects in action
+5. Feel free to fork, contribute, or use as inspiration for your own work
 
 ## 🤝 Contributing
 
@@ -87,7 +97,15 @@ Please feel free to open an issue or reach out through GitHub!
 
 ## 📝 License
 
-This portfolio is open source. Feel free to explore, learn, and contribute!
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### MIT License Summary
+You are free to:
+- ✅ Use this code for personal and commercial purposes
+- ✅ Modify and distribute the code
+- ✅ Include this code in proprietary applications
+
+With the condition that you include the original license and copyright notice.
 
 ---
 
