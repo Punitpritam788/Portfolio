@@ -19,7 +19,7 @@ I'm a full-stack developer and AI enthusiast dedicated to creating impactful app
 
 ### Frontend & Web
 - **React** - Building dynamic, interactive user interfaces
-- **HTML/CSS** - Semantic markup and responsive design
+- **HTML** - Semantic markup and responsive design
 
 ### AI & Machine Learning
 - **AI Tools & Libraries** - Implementing intelligent features and automation
@@ -33,6 +33,8 @@ This portfolio showcases my work across various domains. Each project demonstrat
 - Strong focus on user experience
 - Real-world application scenarios
 
+Browse through the projects in this repository to see practical examples of my work in action.
+
 ## 🎯 What I'm Passionate About
 
 ✨ **Innovation** - Creating solutions that push boundaries and challenge the status quo  
@@ -45,12 +47,50 @@ This portfolio showcases my work across various domains. Each project demonstrat
 I'm always interested in collaborating on innovative projects and discussing new ideas. Feel free to reach out!
 
 - **GitHub**: [@Punitpritam788](https://github.com/Punitpritam788)
-- **Portfolio**: Check out the projects in this repository
+- **Repository**: [Punitpritam788/Portfolio](https://github.com/Punitpritam788/Portfolio)
+
+## 📖 Repository Features
+
+- **Open Source**: All projects are open source and available for exploration and contribution
+- **GitHub Pages**: Enabled for portfolio hosting and showcase
+- **Active Development**: Continuously updated with new projects and improvements
+- **Discussions Enabled**: Engage with the community and share ideas
+
+## 🛠️ Technologies Used
+
+This portfolio primarily showcases:
+- **Frontend Development** with HTML and React
+- **Backend Services** with Python and REST APIs
+- **AI/ML Implementation** with modern AI tools
+- **Responsive Design** for mobile and desktop experiences
+
+## 📋 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Punitpritam788/Portfolio.git
+   ```
+
+2. Explore the projects folder to see different showcases
+3. Check individual project README files for specific setup instructions
+4. Feel free to fork, contribute, or use as inspiration for your own work
+
+## 🤝 Contributing
+
+I welcome contributions, suggestions, and feedback! If you'd like to:
+- Report issues or bugs
+- Suggest improvements
+- Contribute code or documentation
+- Collaborate on projects
+
+Please feel free to open an issue or reach out through GitHub!
 
 ## 📝 License
 
-This portfolio is open source and available under the MIT License. Feel free to explore, learn, and contribute!
+This portfolio is open source. Feel free to explore, learn, and contribute!
 
 ---
 
 **Happy coding!** 🚀
+
+*Last Updated: June 29, 2026*
