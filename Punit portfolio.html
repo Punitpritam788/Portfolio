@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punit Pritam Mohanty — AI & Web Developer</title>
+<meta name="description" content="Portfolio of Punit Pritam Mohanty, Computer Science graduate, AI Intern, and Full-Stack Web Developer.">
+<meta name="theme-color" content="#0D0D12">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23FFC400' stroke='%23000' stroke-width='4'/%3E%3Cpath d='M50,66 C44,58 34,60 23,49 C34,52 42,47 45,39 L48,50 L50,41 L52,50 L55,39 C58,47 66,52 77,49 C66,60 56,58 50,66 Z' fill='%230D0D12'/%3E%3C/svg%3E">
+<meta property="og:title" content="Punit Pritam Mohanty — AI & Web Developer">
+<meta property="og:description" content="Computer Science graduate building full-stack apps, NLP pipelines, and AI tools — based in Bengaluru, India.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Archivo:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Batman Comic Palette */
+  --paper: #0D0D12;       /* Gotham Night */
+  --paper-2: #1A1A24;     /* Dark Grey */
+  --ink: #FFFFFF;         /* White text */
+  --ink-dark: #000000;    /* Pure Black for comic lines */
+  --ink-soft: #A0A0B0;    /* Grey text */
+  --accent: #FFC400;      /* Bat Signal Yellow */
+  --accent-deep: #CC9D00;
+  --blood: #B30E1E;       /* Deep Crimson */
+  --line: rgba(255, 255, 255, 0.1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+html, body { background: var(--paper); color: var(--ink); overflow-x: hidden; }
+body { font-family: 'Archivo', sans-serif; line-height: 1.6; cursor: none; }
+::selection { background: var(--accent); color: var(--ink-dark); }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Halftone Comic Texture ---------- */
+.halftone {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.15;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+.halftone-yellow {
+  position: fixed; top: -20vh; right: -15vw; width: 55vw; height: 55vw; z-index: 1; pointer-events: none; opacity: 0.08; border-radius: 50%;
+  background-image: radial-gradient(var(--accent) 1.4px, transparent 2px); background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(circle, black 0%, transparent 68%); mask-image: radial-gradient(circle, black 0%, transparent 68%);
+  animation: dotDrift 14s ease-in-out infinite alternate;
+}
+@keyframes dotDrift { from { transform: translate(0,0) rotate(0); } to { transform: translate(4vw, -3vh) rotate(8deg); } }
+
+/* ---------- Custom Cursor ---------- */
+.cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; transform: translate(-50%,-50%); }
+.cursor-dot { width: 10px; height: 10px; background: var(--accent); border: 2px solid var(--ink-dark); }
+.cursor-ring { width: 44px; height: 44px; border: 2px solid var(--ink); transition: width .25s, height .25s, border-color .25s, background .25s; }
+.cursor-ring.hovering { width: 86px; height: 86px; border-color: var(--accent); background: rgba(255, 196, 0, 0.1); }
+.cursor-label { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: .1em; color: var(--accent); transform: translate(16px, 20px) rotate(-4deg); opacity: 0; transition: opacity .3s; text-shadow: 2px 2px 0 var(--ink-dark); }
+#grappleTrail { position: fixed; inset: 0; z-index: 9998; pointer-events: none; }
+@media (hover:none) { .cursor-dot, .cursor-ring, .cursor-label, #grappleTrail { display: none; } body { cursor: auto; } }
+
+/* ---------- Loader ---------- */
+#loader { position: fixed; inset: 0; background: var(--ink-dark); z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; transition: opacity .9s, visibility .9s; }
+#loader.done { opacity: 0; visibility: hidden; }
+#loader::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 196, 0, 0.15) 1.6px, transparent 2px); background-size: 16px 16px; animation: dotDrift 6s linear infinite alternate; }
+.loader-logo { font-family: 'Bangers', cursive; font-size: clamp(44px, 8vw, 90px); letter-spacing: .06em; color: var(--accent); text-shadow: 2px 2px 0 var(--paper), 4px 4px 0 var(--ink-dark), 7px 7px 0 rgba(255, 196, 0, 0.3); animation: loaderBounce 1s ease-in-out infinite; }
+@keyframes loaderBounce { 0%, 100% { transform: rotate(-2deg) scale(1); } 50% { transform: rotate(2deg) scale(1.05); } }
+.loader-bar { width: min(340px, 70vw); height: 14px; background: var(--paper-2); border: 3px solid var(--ink-dark); border-radius: 99px; overflow: hidden; box-shadow: 4px 4px 0 var(--accent); }
+.loader-bar i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(45deg, var(--accent) 0 12px, var(--ink-dark) 12px 24px); transition: width .2s; }
+.loader-status { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: .12em; color: var(--ink); min-height: 24px; transform: rotate(-2deg); }
+
+#gl { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ---------- HUD ---------- */
+.hud { position: fixed; z-index: 7000; pointer-events: none; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .22em; color: var(--ink-soft); text-transform: uppercase; text-shadow: 1px 1px 0 var(--ink-dark); }
+.hud b { color: var(--accent); font-weight: 700; }
+.hud-tl { top: 96px; left: 32px; } .hud-br { bottom: 24px; right: 32px; text-align: right; }
+.hud::before { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid var(--accent); }
+.hud-tl::before { top: -12px; left: -8px; border-right: none; border-bottom: none; }
+.hud-br::before { bottom: -6px; right: -8px; border-left: none; border-top: none; }
+@media(max-width:860px) { .hud { display: none; } }
+
+.progress { position: fixed; top: 0; left: 0; height: 6px; width: 100%; z-index: 8000; background: var(--ink-dark); }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); border-bottom: 2px solid var(--ink-dark); box-shadow: 0 0 10px var(--accent); }
+
+/* ---------- Navigation ---------- */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 7500; display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(20px, 5vw, 64px); background: rgba(13, 13, 18, 0.85); backdrop-filter: blur(10px); border-bottom: 3px solid var(--ink-dark); box-shadow: 0 4px 0 rgba(0,0,0,0.5); }
+.nav-logo { font-family: 'Bangers', cursive; font-size: 26px; letter-spacing: .06em; color: var(--ink); text-shadow: 2px 2px 0 var(--ink-dark); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.nav-links a { position: relative; color: var(--ink-soft); transition: color .3s; }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 3px; background: var(--accent); transition: width .35s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: .08em; border: 3px solid var(--ink-dark); padding: 8px 24px; border-radius: 4px; color: var(--ink-dark); background: var(--accent); box-shadow: 4px 4px 0 var(--ink-dark); transition: .25s; }
+.nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink-dark); background: var(--ink); }
+
+/* ---------- Mobile Nav Toggle ---------- */
+.nav-toggle { display: none; flex-direction: column; justify-content: center; align-items: stretch; gap: 5px; width: 40px; height: 34px; padding: 7px 8px; border: 3px solid var(--ink-dark); background: var(--accent); box-shadow: 3px 3px 0 var(--ink-dark); cursor: pointer; }
+.nav-toggle span { display: block; height: 3px; width: 100%; background: var(--ink-dark); border-radius: 2px; transition: transform .25s, opacity .25s; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media(max-width:760px) {
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+    background: var(--paper-2); border-bottom: 4px solid var(--ink-dark); border-top: 3px solid var(--ink-dark);
+    padding: 6px 0; box-shadow: 0 10px 0 rgba(0,0,0,.35);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 16px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--line); font-size: 14px; }
+  .nav-links a::after { display: none; }
+  
+  /* Adjusted flex orders and margins to push CTA and toggle to the right */
+  .nav-cta { order: 2; margin-left: auto; margin-right: 14px; }
+  .nav-toggle { display: flex; order: 3; margin-left: 0; }
+}
+@media(max-width:420px) {
+  .nav-cta { padding: 8px 14px; font-size: 14px; margin-right: 10px; }
+}
+
+/* ---------- Layout ---------- */
+main { position: relative; z-index: 2; }
+section { position: relative; padding: clamp(90px, 14vh, 160px) clamp(20px, 6vw, 96px); max-width: 1400px; margin: 0 auto; }
+.skew-wrap { will-change: transform; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 14px; margin-bottom: 28px; font-weight: 700; text-shadow: 1px 1px 0 var(--ink-dark); }
+.eyebrow::before { content: ""; width: 36px; height: 4px; background: var(--accent); border: 1px solid var(--ink-dark); }
+
+/* ---------- Hero ---------- */
+.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 130px; perspective: 1100px; }
+.hero-tag { font-family: 'JetBrains Mono', monospace; font-size: clamp(11px, 1.3vw, 14px); letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 26px; opacity: 0; font-weight: 700; background: var(--ink-dark); display: inline-block; padding: 4px 10px; width: fit-content; border: 2px solid var(--accent); transform: rotate(-1deg); }
+.h1-3d { transform-style: preserve-3d; will-change: transform; }
+.hero h1 { font-family: 'Bangers', cursive; font-weight: 400; font-size: clamp(60px, 11vw, 160px); line-height: .92; letter-spacing: .015em; text-transform: uppercase; transform-style: preserve-3d; }
+.hero h1 .row { display: block; overflow: visible; transform-style: preserve-3d; }
+.hero h1 .row span { display: inline-block; transform: translateY(120%) rotateX(-80deg); transform-style: preserve-3d; }
+.t3d-white { color: var(--ink); text-shadow: 1px 1px 0 var(--ink-soft), 2px 2px 0 var(--ink-soft), 3px 3px 0 var(--ink-dark), 5px 5px 0 var(--ink-dark), 8px 8px 0 rgba(0,0,0,.5); }
+.t3d-accent { color: var(--accent); text-shadow: 1px 1px 0 var(--accent-deep), 2px 2px 0 var(--accent-deep), 3px 3px 0 var(--accent-deep), 4px 4px 0 var(--accent-deep), 5px 5px 0 var(--ink-dark), 8px 8px 0 rgba(0,0,0,.5); }
+.t3d-blood { color: var(--blood); text-shadow: 1px 1px 0 #800000, 2px 2px 0 #800000, 3px 3px 0 #800000, 4px 4px 0 var(--ink-dark), 7px 7px 0 rgba(0,0,0,.5); }
+.hero-sub { margin-top: 36px; max-width: 600px; font-size: clamp(16px, 1.7vw, 20px); color: var(--ink-soft); opacity: 0; font-weight: 500; background: rgba(0,0,0,0.6); padding: 16px; border-left: 4px solid var(--accent); }
+.hero-sub b { color: var(--ink); font-weight: 700; }
+.hero-actions { display: flex; gap: 18px; margin-top: 44px; flex-wrap: wrap; opacity: 0; }
+.btn { position: relative; display: inline-flex; align-items: center; gap: 12px; font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: .08em; padding: 14px 32px; border: 3px solid var(--ink-dark); transition: .25s; will-change: transform; overflow: hidden; color: var(--ink-dark); }
+.btn-primary { background: var(--accent); box-shadow: 5px 5px 0 var(--ink-dark); }
+.btn-primary:hover { transform: translate(-3px, -3px) rotate(-1deg); box-shadow: 8px 8px 0 var(--ink-dark); background: var(--ink); }
+.btn-ghost { background: var(--paper-2); color: var(--ink); box-shadow: 5px 5px 0 var(--ink-dark); border-color: var(--ink); }
+.btn-ghost:hover { transform: translate(-3px, -3px) rotate(1deg); box-shadow: 8px 8px 0 var(--accent); background: var(--ink-dark); color: var(--accent); border-color: var(--accent); }
+.btn .dot { width: 10px; height: 10px; background: var(--ink-dark); border: 2px solid var(--ink); animation: blink 1.2s infinite; }
+.btn-ghost .dot { background: var(--accent); border-color: var(--ink-dark); }
+@keyframes blink { 50% { opacity: .25; } }
+
+.hero-meta { position: absolute; bottom: 36px; left: clamp(20px, 6vw, 96px); right: clamp(20px, 6vw, 96px); display: flex; justify-content: space-between; align-items: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); opacity: 0; font-weight: 700; text-shadow: 1px 1px 0 var(--ink-dark); }
+.scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--accent); }
+.scroll-hint .wheel { width: 3px; height: 46px; background: linear-gradient(180deg, var(--accent), transparent); animation: dropLine 1.8s ease-in-out infinite; }
+
+/* ---------- Comic Marquees ---------- */
+.marquee { position: relative; z-index: 2; border-top: 4px solid var(--ink-dark); border-bottom: 4px solid var(--ink-dark); overflow: hidden; padding: 16px 0; background: var(--accent); transform: rotate(-1.2deg) scale(1.02); margin: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.marquee.m2 { background: var(--ink-dark); transform: rotate(1deg) scale(1.02); border-color: var(--accent); }
+.marquee-track { display: flex; width: max-content; font-family: 'Bangers', cursive; font-size: clamp(24px, 3vw, 36px); text-transform: uppercase; letter-spacing: .14em; color: var(--ink-dark); }
+.marquee.m2 .marquee-track { color: var(--ink); }
+.marquee-track span { padding: 0 30px; white-space: nowrap; }
+.marquee-track .hl { color: var(--ink); }
+.marquee.m2 .marquee-track .hl { color: var(--accent); }
+.m-fwd .marquee-track { animation: marquee 22s linear infinite; }
+.m-rev .marquee-track { animation: marqueeRev 26s linear infinite; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes marqueeRev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* ---------- Headings ---------- */
+.h2 { font-family: 'Bangers', cursive; font-weight: 400; font-size: clamp(40px, 6.5vw, 86px); line-height: 1; text-transform: uppercase; max-width: 960px; letter-spacing: .02em; transform-style: preserve-3d; text-shadow: 3px 3px 0 var(--ink-dark); }
+.h2 .accent { color: var(--accent); }
+.h2 .blood { color: var(--blood); }
+.reveal { opacity: 0; transform: translateY(60px); }
+.flip3d { opacity: 0; transform: rotateX(-85deg) translateY(40px); transform-origin: top center; }
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(40px, 6vw, 90px); margin-top: 50px; align-items: start; }
+@media(max-width:900px) { .about-grid { grid-template-columns: 1fr; } }
+.about-text p { font-size: clamp(16px, 1.7vw, 20px); color: var(--ink-soft); margin-bottom: 24px; font-weight: 500; }
+.about-text p b { color: var(--ink); font-weight: 700; }
+.about-text .quote { font-family: 'Bangers', cursive; font-size: clamp(22px, 2.4vw, 30px); color: var(--ink-dark); border: 4px solid var(--ink-dark); padding: 22px 26px; background: var(--accent); box-shadow: 8px 8px 0 var(--ink-dark); transform: rotate(-2deg); letter-spacing: .04em; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.stat { position: relative; background: var(--paper-2); border: 3px solid var(--ink-dark); padding: 26px 24px; box-shadow: 6px 6px 0 var(--ink-dark); transition: .25s; overflow: hidden; }
+.stat:nth-child(odd) { transform: rotate(-1deg); }
+.stat:nth-child(even) { transform: rotate(1deg); }
+.stat:hover { transform: translate(-4px, -4px) rotate(0); box-shadow: 10px 10px 0 var(--accent); background: var(--ink-dark); border-color: var(--accent); }
+.stat .num { font-family: 'Bangers', cursive; font-size: clamp(34px, 4vw, 56px); color: var(--ink); text-shadow: 3px 3px 0 var(--ink-dark); }
+.stat:hover .num { color: var(--accent); }
+.stat .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; font-weight: 700; }
+
+/* ---------- Tech Loadout & Origin Files (Skills + Education) ---------- */
+.loadout-title { font-family: 'Bangers', cursive; font-size: clamp(24px, 3vw, 36px); letter-spacing: .04em; text-transform: uppercase; margin: 64px 0 26px; text-shadow: 2px 2px 0 var(--ink-dark); }
+.loadout-title:first-of-type { margin-top: 70px; }
+.skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.skill-group { background: var(--paper-2); border: 3px solid var(--ink-dark); padding: 20px 22px; box-shadow: 5px 5px 0 var(--ink-dark); }
+.skill-group:nth-child(odd) { transform: rotate(-.6deg); }
+.skill-group:nth-child(even) { transform: rotate(.6deg); }
+.skill-cat { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.edu-list { display: flex; flex-direction: column; gap: 16px; }
+.edu-item { display: grid; grid-template-columns: 110px 1fr; gap: 22px; align-items: center; padding: 20px 24px; border: 3px solid var(--ink-dark); background: var(--paper-2); box-shadow: 5px 5px 0 var(--ink-dark); transition: .25s; }
+.edu-item:nth-child(odd) { transform: rotate(-.4deg); }
+.edu-item:nth-child(even) { transform: rotate(.4deg); }
+.edu-item:hover { transform: translate(-3px, -3px) rotate(0); box-shadow: 8px 8px 0 var(--accent); border-color: var(--accent); }
+.edu-year { font-family: 'Bangers', cursive; font-size: 20px; color: var(--accent); text-shadow: 2px 2px 0 var(--ink-dark); }
+.edu-degree { font-family: 'Bangers', cursive; font-size: clamp(17px, 1.9vw, 23px); text-transform: uppercase; letter-spacing: .03em; text-shadow: 1px 1px 0 var(--ink-dark); }
+.edu-school { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-top: 6px; letter-spacing: .05em; font-weight: 700; }
+@media(max-width:620px) { .edu-item { grid-template-columns: 1fr; gap: 6px; } }
+
+/* ---------- Comic Panel Projects ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 64px; perspective: 1400px; }
+.card { position: relative; border: 4px solid var(--ink-dark); padding: 40px 32px; background: var(--paper-2); box-shadow: 10px 10px 0 var(--ink-dark); transform-style: preserve-3d; will-change: transform; transition: box-shadow .3s, border-color .3s; display: flex; flex-direction: column; }
+.card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 196, 0, 0.15), transparent 45%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.card:hover::before { opacity: 1; }
+.card:hover { box-shadow: 16px 16px 0 var(--accent); border-color: var(--accent); }
+.card .badge { position: absolute; top: -4px; right: 24px; font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: .1em; background: var(--ink-dark); color: var(--accent); border: 4px solid var(--ink-dark); border-top: none; padding: 8px 16px; transform: translateZ(30px); }
+.card:nth-child(2) .badge { background: var(--accent); color: var(--ink-dark); border-color: var(--ink-dark); }
+.card:nth-child(3) .badge { background: var(--blood); color: var(--ink); border-color: var(--ink-dark); }
+.card h3 { font-family: 'Bangers', cursive; font-size: clamp(26px, 2.4vw, 34px); margin: 30px 0 16px; text-transform: uppercase; letter-spacing: .04em; transform: translateZ(46px); text-shadow: 2px 2px 0 var(--ink-dark); }
+.card p { color: var(--ink-soft); font-size: 16px; transform: translateZ(28px); font-weight: 500; flex-grow: 1; }
+.card .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; transform: translateZ(20px); }
+.chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; border: 2px solid var(--ink-dark); padding: 6px 12px; color: var(--ink); background: var(--paper); font-weight: 700; box-shadow: 2px 2px 0 var(--ink-dark); }
+.card:hover .chip { border-color: var(--accent); }
+.card-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; transform: translateZ(34px); }
+.card-link { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; border: 2px solid var(--ink-dark); padding: 9px 18px; background: var(--accent); color: var(--ink-dark); box-shadow: 3px 3px 0 var(--ink-dark); transition: .2s; }
+.card-link:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink-dark); }
+.card-link.ghost { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.card:hover .card-link.ghost { border-color: var(--accent); }
+.card-link.ghost:hover { background: var(--ink-dark); color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Experience Timeline ---------- */
+.steps { margin-top: 70px; }
+.step { display: grid; grid-template-columns: 140px 1fr 1.5fr; gap: 30px; align-items: center; padding: 34px 26px; border: 4px solid var(--ink-dark); margin-bottom: 24px; background: var(--paper-2); box-shadow: 8px 8px 0 var(--ink-dark); transition: .3s; }
+.step:nth-child(odd) { transform: rotate(-.5deg); }
+.step:nth-child(even) { transform: rotate(.5deg); }
+.step:hover { transform: translate(-4px, -4px) rotate(0); box-shadow: 12px 12px 0 var(--accent); border-color: var(--accent); }
+@media(max-width:860px) { .step { grid-template-columns: 1fr; gap: 16px; padding: 24px; } }
+.step .date-block { font-family: 'Bangers', cursive; font-size: 28px; color: var(--accent); text-shadow: 2px 2px 0 var(--ink-dark); line-height: 1.1; }
+.step .date-block span { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft); text-shadow: none; letter-spacing: .1em; margin-top: 4px; }
+.step h4 { font-family: 'Bangers', cursive; font-size: clamp(22px, 2.2vw, 28px); text-transform: uppercase; letter-spacing: .04em; text-shadow: 2px 2px 0 var(--ink-dark); }
+.step .company { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 700; margin-top: 6px; }
+.step p { color: var(--ink-soft); font-size: 15px; font-weight: 500; }
+
+/* ---------- Certifications / Badges ---------- */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; margin-top: 64px; }
+.cert-card { position: relative; border: 3px solid var(--ink-dark); background: var(--paper-2); padding: 26px 28px; box-shadow: 6px 6px 0 var(--ink-dark); transition: .25s; }
+.cert-card:nth-child(odd) { transform: rotate(-.7deg); }
+.cert-card:nth-child(even) { transform: rotate(.7deg); }
+.cert-card:hover { transform: translate(-3px, -3px) rotate(0); box-shadow: 10px 10px 0 var(--accent); border-color: var(--accent); }
+.cert-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+.cert-card h4 { font-family: 'Bangers', cursive; font-size: clamp(18px, 2vw, 23px); text-transform: uppercase; letter-spacing: .03em; line-height: 1.25; text-shadow: 2px 2px 0 var(--ink-dark); }
+.cert-issuer { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-top: 10px; letter-spacing: .08em; font-weight: 700; }
+
+/* ---------- Contact ---------- */
+.contact { text-align: center; min-height: 92svh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.contact .h2 { margin: 0 auto; }
+
+.social-row { margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.social { display: flex; align-items: center; gap: 12px; border: 3px solid var(--ink-dark); padding: 14px 28px; border-radius: 8px; font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: .08em; color: var(--ink); background: var(--paper-2); box-shadow: 6px 6px 0 var(--ink-dark); transition: .25s; text-transform: uppercase; }
+.social:hover { transform: translate(-4px, -6px) rotate(-2deg); background: var(--accent); color: var(--ink-dark); box-shadow: 10px 10px 0 var(--ink-dark); }
+.social svg { width: 24px; height: 24px; fill: currentColor; }
+
+footer { position: relative; z-index: 2; border-top: 4px solid var(--ink-dark); padding: 30px clamp(20px, 6vw, 96px); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); background: var(--ink-dark); font-weight: 700; }
+
+/* ---------- Comic Click Bursts ---------- */
+.burst { position: fixed; z-index: 9500; pointer-events: none; transform: translate(-50%,-50%); font-family: 'Bangers', cursive; display: flex; align-items: center; justify-content: center; }
+.burst svg { position: absolute; width: 160px; height: 160px; filter: drop-shadow(4px 4px 0 #000); }
+.burst b { position: relative; font-size: 34px; letter-spacing: .06em; color: var(--ink-dark); transform: rotate(-6deg); z-index: 2; }
+.impact-splat { position: fixed; z-index: 9400; pointer-events: none; transform: translate(-50%,-50%); }
+
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring, .cursor-label, #grappleTrail { display: none; }
+  .reveal, .flip3d, .hero-tag, .hero-sub, .hero-actions, .hero-meta { opacity: 1 !important; transform: none !important; }
+  .hero h1 .row span { transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-logo">PUNIT.SYS</div>
+  <div class="loader-bar"><i id="loadFill"></i></div>
+  <div class="loader-status" id="loadStatus">ASCENDING TOWER...</div>
+</div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-label" id="cursorLabel"></div>
+<canvas id="gl"></canvas>
+<canvas id="grappleTrail"></canvas>
+<div class="halftone"></div>
+<div class="halftone-yellow"></div>
+<div class="progress"><i id="progFill"></i></div>
+
+<div class="hud hud-tl">SYS // <b>PUNIT.DEV</b><br>NODE: BLR</div>
+<div class="hud hud-br">GRAPPLE <b id="hudWeb">000%</b><br>SCROLL <b id="hudScroll">000%</b></div>
+
+<nav>
+  <a class="nav-logo hoverable" href="#top">PUNIT<span>.AI</span></a>
+  <div class="nav-links" id="navLinks">
+    <a class="hoverable" href="#about">Origins</a>
+    <a class="hoverable" href="#work">Arsenal</a>
+    <a class="hoverable" href="#experience">Missions</a>
+    <a class="hoverable" href="#certifications">Badges</a>
+    <a class="hoverable" href="#contact">Signal</a>
+  </div>
+  <button class="nav-toggle hoverable" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <a class="nav-cta hoverable" href="mailto:punitpritam788@gmail.com">SEND SIGNAL ↗</a>
+</nav>
+
+<main id="top">
+<div class="skew-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag" id="scrambleTag">// PUNIT — BENGALURU, INDIA</div>
+    <div class="h1-3d" id="h13d">
+      <h1>
+        <span class="row"><span class="t3d-white">I'M A</span></span>
+        <span class="row"><span class="t3d-accent">FRESHER.</span></span>
+        <span class="row"><span class="t3d-blood">READY TO MAKE IMPACT.</span></span>
+      </h1>
+    </div>
+    <p class="hero-sub">I'm <b>Punit Pritam Mohanty</b>. Computer Science graduate executing practical software solutions. From full-stack architectures to NLP and modern AI tools, I bring <b>relentless problem-solving</b> to dynamic engineering teams.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary hoverable magnetic" data-label="BAM!" href="#contact"><span class="dot"></span> Send the Signal</a>
+      <a class="btn btn-ghost hoverable magnetic" data-label="POW!" href="#work">View Arsenal ↓</a>
+    </div>
+    <div class="hero-meta">
+      <div>ITER, SOA UNIVERSITY</div>
+      <div class="scroll-hint">SCROLL TO FIRE GRAPPLE</div>
+      <div>ADAPTABLE · PRECISE</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee m-fwd">
+    <div class="marquee-track">
+      <span>Python</span><span class="hl">/</span><span>JavaScript</span><span class="hl">/</span><span>React</span><span class="hl">/</span><span>FastAPI</span><span class="hl">/</span><span>LLMs & RAG</span><span class="hl">/</span><span>spaCy</span><span class="hl">/</span><span>HTML/CSS</span><span class="hl">/</span>
+      <span>Python</span><span class="hl">/</span><span>JavaScript</span><span class="hl">/</span><span>React</span><span class="hl">/</span><span>FastAPI</span><span class="hl">/</span><span>LLMs & RAG</span><span class="hl">/</span><span>spaCy</span><span class="hl">/</span><span>HTML/CSS</span><span class="hl">/</span>
+    </div>
+  </div>
+  <div class="marquee m-rev m2">
+    <div class="marquee-track">
+      <span>Problem Solver</span><span class="hl">★</span><span>Full-Stack</span><span class="hl">★</span><span>NLP Models</span><span class="hl">★</span><span>API Integration</span><span class="hl">★</span>
+      <span>Problem Solver</span><span class="hl">★</span><span>Full-Stack</span><span class="hl">★</span><span>NLP Models</span><span class="hl">★</span><span>API Integration</span><span class="hl">★</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="eyebrow reveal">01 — The Origin</div>
+    <h2 class="h2 flip3d">DRIVEN BY <span class="accent">CURIOSITY</span> & JUSTICE</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="reveal">I am a <b>Computer Science graduate</b> with a proactive approach to building practical software solutions. Passionate about learning new technologies through <b>hands-on project development</b>.</p>
+        <p class="reveal">Experienced in developing <b>full-stack web applications</b>, integrating third-party APIs, and experimenting with NLP and modern AI tools. I am eager to bring strong problem-solving skills and adaptability to a dynamic engineering team.</p>
+        <p class="quote reveal">"It's not who I am underneath, but what I build that defines me."</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="num" data-count="7.12">0</div><div class="lbl">B.Tech CGPA</div></div>
+        <div class="stat"><div class="num" data-count="70">0</div><div class="lbl">Airports Mapped</div></div>
+        <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Key Certifications</div></div>
+        <div class="stat"><div class="num" data-count="100">0</div><div class="lbl">% Adaptable</div></div>
+      </div>
+    </div>
+
+    <h3 class="loadout-title reveal">Tech <span class="accent">Loadout</span></h3>
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-cat">Frameworks</div>
+        <div class="skill-chips">
+          <span class="chip">React</span><span class="chip">Vite</span><span class="chip">FastAPI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-cat">AI &amp; Data</div>
+        <div class="skill-chips">
+          <span class="chip">RAG</span><span class="chip">spaCy</span><span class="chip">NLTK</span><span class="chip">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-cat">Dev Tools</div>
+        <div class="skill-chips">
+          <span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">Google Colab</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="loadout-title reveal">Origin <span class="accent">Files</span></h3>
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <div class="edu-year">2021–25</div>
+        <div>
+          <div class="edu-degree">B.Tech, Computer Science</div>
+          <div class="edu-school">ITER, Siksha 'O' Anusandhan University, Bhubaneswar · CGPA 7.12/10</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2019–21</div>
+        <div>
+          <div class="edu-degree">Higher Secondary (Science)</div>
+          <div class="edu-school">KIIT International School, Bhubaneswar · 74.6%</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2008–19</div>
+        <div>
+          <div class="edu-degree">High School</div>
+          <div class="edu-school">DAV Public School, Kalinga Nagar, Bhubaneswar · 78.4%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="eyebrow reveal">02 — The Arsenal</div>
+    <h2 class="h2 flip3d">ENGINEERING <span class="blood">INTELLIGENT</span> SOLUTIONS</h2>
+    <div class="cards">
+      <div class="card hoverable reveal">
+        <div class="badge">Gadget #01</div>
+        <h3>IndiLaw AI Assistant</h3>
+        <p>A proof-of-concept bilingual (English & Hindi) voice-enabled legal chatbot using Retrieval-Augmented Generation (RAG). Leverages spaCy and NLTK for multilingual semantic search.</p>
+        <div class="chip-row">
+          <span class="chip">React / Vite</span><span class="chip">FastAPI</span><span class="chip">LLMs & RAG</span>
+        </div>
+      </div>
+      <div class="card hoverable reveal">
+        <div class="badge">Gadget #02</div>
+        <h3>SkyTracker India</h3>
+        <p>A full-stack flight price intelligence prototype covering 70+ airports. Integrates AviationStack & Amadeus APIs with simulation fallbacks and a predictive booking window.</p>
+        <div class="chip-row">
+          <span class="chip">JavaScript</span><span class="chip">REST APIs</span><span class="chip">Dynamic Pricing</span>
+        </div>
+        <div class="card-links">
+          <a class="card-link hoverable" href="https://github.com/Punitpritam788/SkyTracker-India" target="_blank" rel="noopener">View Code →</a>
+        </div>
+      </div>
+      <div class="card hoverable reveal">
+        <div class="badge">Gadget #03</div>
+        <h3>Mass Mail Dispatch</h3>
+        <p>A full-stack mass email dispatch system designed to automate bulk promotional campaigns, delivering a responsive UI that simplifies campaign management with minimal friction.</p>
+        <div class="chip-row">
+          <span class="chip">HTML/CSS</span><span class="chip">JavaScript</span><span class="chip">Automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="eyebrow reveal">03 — Mission Logs</div>
+    <h2 class="h2 flip3d">PROFESSIONAL <span class="accent">EXPERIENCE</span></h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="date-block">2024<span>JUL - AUG</span></div>
+        <div>
+          <h4>AI Intern</h4>
+          <div class="company">College Tips.in · Bengaluru</div>
+        </div>
+        <p>Developed NLP-based content recommendation models using collaborative filtering. Experimented with LLM prompt pipelines utilizing chain-of-thought and few-shot prompting to improve relevance.</p>
+      </div>
+      <div class="step reveal">
+        <div class="date-block">2023<span>JUL - AUG</span></div>
+        <div>
+          <h4>Web Dev Intern</h4>
+          <div class="company">Exposys Data Labs · Bengaluru</div>
+        </div>
+        <p>Built a full-stack mass email dispatch system designed to automate the distribution of bulk campaigns with a clean, responsive UI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="eyebrow reveal">04 — Field Badges</div>
+    <h2 class="h2 flip3d">CERTIFICATIONS & <span class="accent">BADGES</span></h2>
+    <div class="cert-grid">
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Oct 2025</div>
+        <h4>OCI 2025 Certified Data Science Professional</h4>
+        <div class="cert-issuer">Oracle</div>
+      </div>
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Oct 2025</div>
+        <h4>Oracle Data Platform 2025 — Certified Foundations Associate</h4>
+        <div class="cert-issuer">Oracle</div>
+      </div>
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Aug 2025</div>
+        <h4>Building LLM Applications with Prompt Engineering</h4>
+        <div class="cert-issuer">NVIDIA</div>
+      </div>
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Dec 2025</div>
+        <h4>Startup School: Prompt to Prototype</h4>
+        <div class="cert-issuer">Google for Startups</div>
+      </div>
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Nov 2025</div>
+        <h4>Data Analytics Job Simulation</h4>
+        <div class="cert-issuer">Deloitte Australia</div>
+      </div>
+      <div class="cert-card hoverable reveal">
+        <div class="cert-date">Jul 2024</div>
+        <h4>AWS Academy Graduate — Cloud Foundations</h4>
+        <div class="cert-issuer">Amazon Web Services</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="eyebrow" style="justify-content:center">05 — Send the Signal</div>
+    <h2 class="h2">READY TO <span class="accent">COLLABORATE?</span></h2>
+    <p class="hero-sub" style="opacity:1; margin:26px auto 0; text-align:center">Looking for opportunities to bring my skills to a dynamic engineering team. <b>I am ready.</b></p>
+    
+    <div class="social-row">
+      <a href="Resume Punit.pdf" target="_blank" rel="noopener" class="social hoverable magnetic" data-label="TOP SECRET!">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Resume
+      </a>
+      <a href="https://www.linkedin.com/in/punit-pritam-mohanty-81816a250" target="_blank" rel="noopener" class="social hoverable magnetic" data-label="NETWORK!">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Punitpritam788" target="_blank" rel="noopener" class="social hoverable magnetic" data-label="CODE!">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="tel:+919692341012" class="social hoverable magnetic" data-label="RING!">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Call
+      </a>
+      <a href="mailto:punitpritam788@gmail.com" class="social hoverable magnetic" data-label="BAM!">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Email
+      </a>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div>© 2026 PUNIT PRITAM MOHANTY</div>
+  <div>BENGALURU, INDIA</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============================================================
+   3D SCENE — GOTHAM CITY + HERO (BATMAN) + GRAPPLE LINE
+============================================================ */
+const canvas = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// SAFEGUARD: Ensure valid dimensions
+const getW = () => Math.max(1, window.innerWidth || 1);
+const getH = () => Math.max(1, window.innerHeight || 1);
+
+renderer.setSize(getW(), getH());
+renderer.setClearColor(0x000000, 0);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x0D0D12, 20, 60);
+const camera = new THREE.PerspectiveCamera(55, getW()/getH(), .1, 200);
+camera.position.set(-2, 3.5, 14);
+
+const INK = 0x111111, YELLOW = 0xFFC400, WHITE = 0xFFFFFF;
+
+/* ---------- GOTHAM SKYLINE ---------- */
+function windowTexture(w, h) {
+  const c = document.createElement('canvas'); c.width = 64; c.height = 128;
+  const x = c.getContext('2d');
+  x.fillStyle = '#050508'; x.fillRect(0, 0, 64, 128); // Very dark buildings
+  x.fillStyle = 'rgba(255, 196, 0, 0.6)'; // Yellow windows
+  for(let r=8; r<124; r+=14) for(let col=8; col<60; col+=14) {
+    if(Math.random() > .85) x.fillRect(col, r, 7, 8);
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.repeat.set(Math.max(1, Math.round(w/1.4)), Math.max(1, Math.round(h/2.4)));
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  return t;
+}
+const city = new THREE.Group();
+const buildingDefs = [
+  [-13,3.5,9,-6],[-9.5,3,12,-5],[-6,4,16,-4.5],[-2.4,3,10,-6.5],
+  [0.8,3.5,13,-5.5],[4.4,3,11,-6],[8.2,4.5,14.5,-2.6],[13.6,3.5,10,-6.2],[17.2,4,12.5,-5.4],
+  [-17,3.5,11,-7],[21.8,3,9.5,-7]
+];
+const HERO_BIDX = 6, HERO_BH = 14.5;
+let heroBuilding = null;
+buildingDefs.forEach((d, i) => {
+  const [bx, bw, bh, bz] = d;
+  const g = new THREE.BoxGeometry(bw, bh, bw);
+  const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ map: windowTexture(bw, bh) }));
+  m.position.set(bx, bh/2-4.5, bz);
+  city.add(m);
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: .9 }));
+  edges.position.copy(m.position);
+  city.add(edges);
+  // Gargoyle / Ledge
+  const ledge = new THREE.Mesh(new THREE.BoxGeometry(bw+.4, .4, bw+.4), new THREE.MeshBasicMaterial({ color: 0x000000 }));
+  ledge.position.set(bx, bh-4.5+.2, bz);
+  city.add(ledge);
+  if(i === HERO_BIDX) heroBuilding = m;
+});
+scene.add(city);
+
+const farRow = new THREE.Group();
+for(let i=0; i<18; i++) {
+  const w=2.5+Math.random()*3, h=6+Math.random()*10;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: 0x0A0A0E, transparent: true, opacity: .8 }));
+  m.position.set(-26+i*3, h/2-4.5, -16);
+  farRow.add(m);
+}
+scene.add(farRow);
+
+/* ---------- BAT HERO (COMIC SPRITE) ---------- */
+function createBatmanSprite() {
+  const c = document.createElement('canvas');
+  c.width = 512; c.height = 512;
+  const ctx = c.getContext('2d');
+
+  // Slight glow behind him to pop against dark background
+  ctx.shadowColor = 'rgba(255, 196, 0, 0.15)';
+  ctx.shadowBlur = 20;
+
+  // Ink black silhouette
+  ctx.fillStyle = '#020204';
+
+  // Cape & Body Geometry
+  ctx.beginPath();
+  ctx.moveTo(256, 100); // Top of head
+  ctx.lineTo(265, 40);  // Right Ear
+  ctx.lineTo(285, 80);  // Right side of head
+  ctx.lineTo(315, 130); // Right shoulder
+  ctx.quadraticCurveTo(460, 240, 440, 480); // Right cape sweeping down
+  ctx.quadraticCurveTo(360, 450, 256, 480); // Scallops
+  ctx.quadraticCurveTo(150, 450, 70, 480);  // Scallops
+  ctx.quadraticCurveTo(50, 240, 195, 130);  // Left cape sweeping up
+  ctx.lineTo(225, 80);  // Left side of head
+  ctx.lineTo(245, 40);  // Left Ear
+  ctx.fill();
+
+  // Left Arm firing grapple (extends to left)
+  ctx.beginPath();
+  ctx.moveTo(195, 130); // Shoulder
+  ctx.lineTo(30, 170);  // Hand extended left
+  ctx.lineTo(30, 210);  // Hand bottom
+  ctx.lineTo(170, 230); // Armpit
+  ctx.fill();
+
+  // Glowing Angry Eyes
+  ctx.fillStyle = '#FFFFFF';
+  ctx.shadowColor = '#FFFFFF';
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.moveTo(230, 105); ctx.lineTo(245, 110); ctx.lineTo(240, 115); // Left Eye
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(280, 105); ctx.lineTo(265, 110); ctx.lineTo(270, 115); // Right Eye
+  ctx.fill();
+
+  return new THREE.CanvasTexture(c);
+}
+
+const heroTex = createBatmanSprite();
+const heroMat = new THREE.MeshBasicMaterial({ map: heroTex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
+const hero = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 4.5), heroMat);
+
+const perch = new THREE.Vector3(heroBuilding.position.x-.4, heroBuilding.position.y+(HERO_BH/2)+2.0, heroBuilding.position.z+1.2);
+hero.position.copy(perch);
+const HERO_BASE_ROT = -0.2; // Angle slightly towards camera
+hero.rotation.y = HERO_BASE_ROT;
+scene.add(hero);
+
+// Map canvas coordinates (Hand at X=30, Y=190) to the 3D Plane
+const handLocal = new THREE.Vector3(-1.98, 0.58, 0.05);
+function handWorld() { 
+  hero.updateMatrixWorld(); // Safeguard to ensure accurate world position
+  const v = hero.localToWorld(handLocal.clone()); 
+  if (isNaN(v.x) || isNaN(v.y) || isNaN(v.z)) v.set(0, 0, 0); // Strict safeguard
+  return v;
+}
+
+/* ---------- PALE MOON ---------- */
+const moon = new THREE.Group();
+const moonDisc = new THREE.Mesh(new THREE.CircleGeometry(5.5, 48), new THREE.MeshBasicMaterial({ color: 0xFFEDAA }));
+const moonRing = new THREE.Mesh(new THREE.RingGeometry(5.5, 5.7, 48), new THREE.MeshBasicMaterial({ color: 0x000000 }));
+moon.add(moonDisc, moonRing);
+// Moon Craters
+for(let i=0; i<9; i++) {
+  const cr = new THREE.Mesh(new THREE.CircleGeometry(.2+Math.random()*.5, 20), new THREE.MeshBasicMaterial({ color: 0xE6D080 }));
+  const a = Math.random()*Math.PI*2, r = Math.random()*4.2;
+  cr.position.set(Math.cos(a)*r, Math.sin(a)*r, .01);
+  moon.add(cr);
+}
+moon.position.set(perch.x+.6, perch.y+2.6, perch.z-8);
+scene.add(moon);
+
+/* ---------- THE BAT SIGNAL ---------- */
+function createBatSignal() {
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 256;
+  const ctx = c.getContext('2d');
+
+  // Glowing Aura
+  const grad = ctx.createRadialGradient(128, 128, 10, 128, 128, 120);
+  grad.addColorStop(0, 'rgba(255, 196, 0, 1)');
+  grad.addColorStop(0.5, 'rgba(255, 150, 0, 0.6)');
+  grad.addColorStop(1, 'rgba(255, 196, 0, 0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 256, 256);
+
+  // Bat Silhouette
+  ctx.fillStyle = '#050508'; // Gotham dark
+  ctx.beginPath();
+  // Right side
+  ctx.moveTo(128, 160); // Bottom point
+  ctx.quadraticCurveTo(150, 140, 180, 140);
+  ctx.quadraticCurveTo(210, 130, 220, 90); // Right wing tip
+  ctx.quadraticCurveTo(180, 100, 150, 90); // Top dip
+  ctx.lineTo(135, 70); // Right ear
+  ctx.lineTo(128, 85); // Head center
+  // Left side
+  ctx.lineTo(121, 70); // Left ear
+  ctx.lineTo(106, 90); // Top dip
+  ctx.quadraticCurveTo(76, 100, 36, 90); // Left wing tip
+  ctx.quadraticCurveTo(46, 130, 76, 140);
+  ctx.quadraticCurveTo(106, 140, 128, 160); // Bottom point
+  ctx.fill();
+
+  return new THREE.CanvasTexture(c);
+}
+
+const batSignalGroup = new THREE.Group();
+
+// 1. Projection in the clouds
+const signalTex = createBatSignal();
+const signalMat = new THREE.MeshBasicMaterial({
+  map: signalTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0.85
+});
+const signalPlane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), signalMat);
+const signalTarget = new THREE.Vector3(-15, 16, -22);
+signalPlane.position.copy(signalTarget);
+batSignalGroup.add(signalPlane);
+
+// 2. Spotlight Beam
+const beamOrigin = new THREE.Vector3(8, -2, -5);
+const beamDist = beamOrigin.distanceTo(signalTarget);
+const beamGeo = new THREE.CylinderGeometry(5, 0.1, beamDist, 32, 1, true);
+const beamMat = new THREE.MeshBasicMaterial({
+  color: 0xFFC400, transparent: true, opacity: 0.06, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
+});
+const beam = new THREE.Mesh(beamGeo, beamMat);
+beam.position.copy(beamOrigin).lerp(signalTarget, 0.5); // Position at midpoint
+beam.lookAt(signalTarget); // Point Z-axis at target
+beam.rotateX(Math.PI / 2); // Rotate cylinder to align Y-axis with Z-axis
+batSignalGroup.add(beam);
+
+scene.add(batSignalGroup);
+
+/* ---------- THE GRAPPLE LINE (CURVED PATH + DYNAMIC PINNING) ---------- */
+// We need a stable base point for the curve to start from
+hero.updateMatrixWorld(true);
+const baseHandWorld = hero.localToWorld(handLocal.clone());
+
+function buildWebCurve() {
+  // Create a perfectly straight, high-tension line for the first section of the grapple
+  const dir = new THREE.Vector3(-4, 0.8, -0.4); // Strong straight shot
+  const p0 = baseHandWorld.clone();
+  const p1 = p0.clone().add(dir);
+  const p2 = p1.clone().add(dir);
+  const p3 = p2.clone().add(dir); // Forcing 4 collinear points makes the Catmull-Rom spline mathematically straight here
+
+  const pts = [
+    p0,
+    p1,
+    p2,
+    p3,
+    new THREE.Vector3(-18, 12, -4), // Swoop high and deep into the city
+    new THREE.Vector3(-22, 6, 8),   // Dive down and accelerate towards camera
+    new THREE.Vector3(-25, 3.5, 14) // Strike the screen directly behind the final UI box!
+  ];
+  return new THREE.CatmullRomCurve3(pts);
+}
+const webCurve = buildWebCurve();
+
+const WEB_SEGS = 400, RADIAL = 6;
+// Thick dark grapple cable following the curved path
+const cableGeo = new THREE.TubeGeometry(webCurve, WEB_SEGS, 0.035, RADIAL, false);
+const cable = new THREE.Mesh(cableGeo, new THREE.MeshBasicMaterial({ color: 0x111111 }));
+cableGeo.setDrawRange(0, 0); 
+scene.add(cable);
+
+// Save the original vertices so we can dynamically bend the start of the cable to the hand
+const baseCablePos = new Float32Array(cableGeo.attributes.position.array);
+
+// Grapple hook tip - Batman Style
+const tip = new THREE.Group();
+
+// Main heavy barrel
+const tipCore = new THREE.Mesh(new THREE.CylinderGeometry(.05, .08, .3, 12), new THREE.MeshBasicMaterial({ color: 0x1A1A24 }));
+tipCore.position.y = 0.15; 
+
+// Center armor spike
+const centerSpear = new THREE.Mesh(new THREE.ConeGeometry(.03, .25, 4), new THREE.MeshBasicMaterial({ color: 0x555555 }));
+centerSpear.position.y = 0.425;
+centerSpear.rotation.y = Math.PI / 4; // sharp edges facing out
+
+// Yellow Bat-Tech Collar
+const collar = new THREE.Mesh(new THREE.CylinderGeometry(.09, .09, .04, 12), new THREE.MeshBasicMaterial({ color: YELLOW }));
+collar.position.y = 0.05;
+
+// Claws (3-Prong Tactical Grappling Hook)
+const prongs = [];
+for (let i = 0; i < 3; i++) {
+  const angle = (i * Math.PI * 2) / 3; // Space the 3 claws 120 degrees apart
+  const prong = new THREE.Group();
+  
+  const pArm = new THREE.Mesh(new THREE.BoxGeometry(.02, .25, .06), new THREE.MeshBasicMaterial({ color: 0x111111 }));
+  pArm.position.set(0, .125, 0);
+  
+  const pTip = new THREE.Mesh(new THREE.ConeGeometry(.03, .15, 4), new THREE.MeshBasicMaterial({ color: YELLOW }));
+  pTip.position.set(-.025, .25, 0); // Hook tip pointing inwards
+  pTip.rotation.z = Math.PI / 6; 
+  
+  prong.add(pArm, pTip);
+  
+  // Position the hinge in a circle around the barrel
+  prong.position.set(Math.cos(angle) * .06, 0.2, Math.sin(angle) * .06);
+  // Rotate the prong so its local "inward" direction faces the center spear
+  prong.rotation.y = -angle; 
+  
+  prongs.push(prong);
+  tip.add(prong);
+}
+
+tip.add(tipCore, centerSpear, collar);
+scene.add(tip);
+
+/* ---------- SCROLL LOGIC ---------- */
+let webProgress = 0, webTarget = 0;
+function setHud(p) { 
+  if(isNaN(p)) p = 0;
+  document.getElementById('hudWeb').textContent = String(Math.round(p*100)).padStart(3,'0') + '%'; 
+}
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  // SAFEGUARD: Prevent division by zero
+  const scrollHeight = Math.max(1, h.scrollHeight || 1);
+  const clientHeight = Math.max(1, h.clientHeight || 1);
+  const scrollRange = Math.max(1, scrollHeight - clientHeight);
+  
+  const p = (h.scrollTop || 0) / scrollRange;
+  
+  webTarget = isNaN(p) ? 0 : Math.max(0, Math.min(1, p));
+  document.getElementById('progFill').style.width = webTarget * 100 + '%';
+  document.getElementById('hudScroll').textContent = String(Math.round(webTarget*100)).padStart(3,'0') + '%';
+}, { passive: true });
+
+// Initialize webTarget in case a scroll hasn't occurred yet, though it is global
+webTarget = 0;
+
+const camBase = { x: 0, y: 5, z: 14 };
+const mouse = { x: 0, y: 0 };
+addEventListener('pointermove', e => { 
+  // SAFEGUARD: Prevent NaN if window dimensions momentarily evaluate to 0
+  const w = getW();
+  const h = getH();
+  mouse.x = (e.clientX || 0) / w - .5; 
+  mouse.y = (e.clientY || 0) / h - .5; 
+  if (isNaN(mouse.x)) mouse.x = 0;
+  if (isNaN(mouse.y)) mouse.y = 0;
+});
+
+/* ---------- BATARANG CLICKS ---------- */
+const shots = [];
+const WORDS = ['KAPOW!', 'WHAM!', 'BAM!', 'CRASH!', 'THWACK!'];
+function comicBurst(x, y) {
+  const el = document.createElement('div');
+  el.className = 'burst';
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+  const word = WORDS[Math.floor(Math.random()*WORDS.length)];
+  const col = Math.random() < .5 ? '#FFC400' : '#B30E1E';
+  
+  // Jagged explosion SVG
+  el.innerHTML = `<svg viewBox="0 0 100 100"><polygon points="50,0 60,30 95,20 70,45 100,65 65,70 70,100 45,75 10,95 30,60 0,40 35,35" fill="${col}" stroke="#000" stroke-width="4"/></svg><b>${word}</b>`;
+  document.body.appendChild(el);
+  gsap.fromTo(el, { scale: 0, rotate: Math.random()*40-20 }, { scale: 1, duration: .3, ease: 'back.out(3)' });
+  gsap.to(el, { scale: 1.2, opacity: 0, duration: .3, delay: .4, onComplete: () => el.remove() });
+}
+
+function impactSplat(x, y) {
+  const el = document.createElement('div');
+  el.className = 'impact-splat';
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+  let lines = '';
+  for(let i=0; i<8; i++) {
+    const a = (i/8)*Math.PI*2;
+    lines += `<line x1="50" y1="50" x2="${50+Math.cos(a)*40}" y2="${50+Math.sin(a)*40}" stroke="#111" stroke-width="4" stroke-linecap="round"/>`;
+  }
+  el.innerHTML = `<svg width="100" height="100" viewBox="0 0 100 100">${lines}</svg>`;
+  document.body.appendChild(el);
+  gsap.fromTo(el, { scale: 0.2, opacity: 1 }, { scale: 1, duration: .2, ease: 'power2.out' });
+  gsap.to(el, { opacity: 0, duration: .4, delay: .2, onComplete: () => el.remove() });
+}
+
+addEventListener('pointerdown', e => {
+  if(e.target.closest('a') || e.target.closest('button')) return;
+  const w = getW();
+  const h = getH();
+  
+  const v = new THREE.Vector3((e.clientX/w)*2-1, -(e.clientY/h)*2+1, .5).unproject(camera);
+  const dir = v.sub(camera.position).normalize();
+  const target = camera.position.clone().add(dir.multiplyScalar(15));
+  const start = handWorld();
+  
+  // SAFEGUARD: Ensure valid distance to prevent TubeGeometry NaN errors
+  if (start.distanceTo(target) < 0.1) target.add(new THREE.Vector3(0, 0.1, 0));
+
+  // Fast straight line for batarang/grapple mini-shot
+  const curve = new THREE.LineCurve3(start, target);
+  const SEG = 20;
+  const g = new THREE.TubeGeometry(curve, SEG, .02, 4, false);
+  g.setDrawRange(0, 0);
+  const mat = new THREE.MeshBasicMaterial({ color: YELLOW });
+  const m = new THREE.Mesh(g, mat);
+  scene.add(m);
+  shots.push({ mesh: m, seg: SEG, t: 0, geo: g, mat: mat });
+  
+  // Hero throw recoil (Squash & stretch)
+  gsap.fromTo(hero.rotation, { z: 0 }, { z: -.1, duration: .1, yoyo: true, repeat: 1 });
+  gsap.fromTo(hero.scale, { x: 1, y: 1 }, { x: 1.05, y: 0.95, duration: .1, yoyo: true, repeat: 1 });
+  
+  comicBurst(e.clientX, e.clientY);
+  impactSplat(e.clientX, e.clientY);
+});
+
+/* ---------- RENDER LOOP ---------- */
+const clock = new THREE.Clock();
+function tick() {
+  const dt = clock.getDelta(), t = clock.getElapsedTime();
+
+  hero.position.y = perch.y + Math.sin(t*2)*.05; // Subtle breathing up/down
+  hero.scale.y = 1 + Math.sin(t*4)*.01; // Tiny chest breathing stretch
+  
+  const targetHeroRot = HERO_BASE_ROT + (mouse.x || 0)*.15;
+  if (!isNaN(targetHeroRot)) hero.rotation.y = targetHeroRot;
+
+  moon.lookAt(camera.position);
+
+  // Bat Signal animation
+  signalPlane.material.opacity = 0.75 + Math.sin(t * 3) * 0.1;
+  beam.material.opacity = 0.05 + Math.sin(t * 3) * 0.015;
+  signalPlane.lookAt(camera.position); // Always face the camera
+
+  // Grapple extend
+  if (!isNaN(webTarget)) {
+    webProgress += (webTarget - webProgress) * .1;
+  }
+  if(isNaN(webProgress)) webProgress = 0; // Strict Safeguard
+  setHud(webProgress);
+
+  const safeProgress = Math.max(0.001, Math.min(0.999, webProgress));
+  const tp = webCurve.getPointAt(safeProgress);
+
+  // LOCK CABLE TO HAND DYNAMICALLY (Vertex Pinning)
+  const start = handWorld();
+  const delta = new THREE.Vector3().subVectors(start, baseHandWorld);
+  const posAttr = cableGeo.attributes.position;
+  const blendSegments = 25; // Smoothly blend the offset over the first 25 segments
+
+  for (let i = 0; i <= blendSegments; i++) {
+    let weight = 1.0 - (i / blendSegments);
+    weight = weight * weight * (3 - 2 * weight); // Smoothstep easing
+
+    for (let r = 0; r <= RADIAL; r++) {
+      const idx = (i * (RADIAL + 1) + r) * 3;
+      posAttr.array[idx] = baseCablePos[idx] + delta.x * weight;
+      posAttr.array[idx+1] = baseCablePos[idx+1] + delta.y * weight;
+      posAttr.array[idx+2] = baseCablePos[idx+2] + delta.z * weight;
+    }
+  }
+  posAttr.needsUpdate = true;
+
+  // Draw the cable up to the current progress
+  const segsOn = Math.floor(safeProgress * WEB_SEGS);
+  cableGeo.setDrawRange(0, Math.max(0, segsOn * RADIAL * 6));
+
+  // Grapple Tip follows path and orients to the curve
+  const tangent = webCurve.getTangentAt(safeProgress).normalize();
+  tip.position.copy(tp);
+  tip.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tangent);
+
+  // Grapple hook grabbing animation at the very end
+  let openAngle = Math.PI / 3; // Flared open wide during flight
+  if (safeProgress > 0.92) {
+    const grabProgress = Math.min(1, (safeProgress - 0.92) * 12.5); // 0 to 1
+    openAngle = THREE.MathUtils.lerp(Math.PI / 3, 0.05, grabProgress); // Snap shut tight around the spear
+  }
+  
+  // Animate all 3 prongs simultaneously
+  prongs.forEach(prong => {
+    prong.rotation.z = -openAngle;
+  });
+
+  // Camera tracking follows the tip and perfectly frames the final grab
+  const followX = THREE.MathUtils.lerp(camBase.x, tp.x, webProgress);
+  const followY = THREE.MathUtils.lerp(camBase.y, tp.y, webProgress);
+  const followZ = THREE.MathUtils.lerp(camBase.z, tp.z + 3, webProgress); // 3 units back from the tip
+  
+  const tCamX = followX + (mouse.x || 0)*2;
+  const tCamY = followY - (mouse.y || 0)*1.5;
+  
+  if (!isNaN(tCamX)) camera.position.x += (tCamX - camera.position.x) * .05;
+  if (!isNaN(tCamY)) camera.position.y += (tCamY - camera.position.y) * .05;
+  if (!isNaN(followZ)) camera.position.z += (followZ - camera.position.z) * .05;
+  
+  const lookStart = new THREE.Vector3(perch.x-4, perch.y, perch.z);
+  const look = new THREE.Vector3().lerpVectors(lookStart, tp, Math.min(1, webProgress*1.1+.1));
+  camera.lookAt(look);
+
+  // Animate shots
+  for(let i = shots.length - 1; i >= 0; i--) {
+    const s = shots[i];
+    s.t += dt * 4;
+    const on = Math.min(1, s.t);
+    s.mesh.geometry.setDrawRange(0, Math.floor(on * s.seg) * 5 * 6);
+    if(s.t > 1) {
+      s.mat.transparent = true;
+      s.mat.opacity = Math.max(0, 1 - (s.t - 1) * 3);
+      if(s.mat.opacity <= 0) { 
+        scene.remove(s.mesh); s.geo.dispose(); s.mat.dispose(); shots.splice(i, 1); 
+      }
+    }
+  }
+
+  renderer.render(scene, camera);
+  if(!reduceMotion) requestAnimationFrame(tick);
+}
+addEventListener('resize', () => { 
+  const w = getW();
+  const h = getH();
+  camera.aspect = w / h; 
+  camera.updateProjectionMatrix(); 
+  renderer.setSize(w, h); 
+});
+
+/* ============================================================
+   CURSOR GRAPPLE TRAIL (2D)
+============================================================ */
+const trailC = document.getElementById('grappleTrail'), tx = trailC.getContext('2d');
+function sizeTrail() { trailC.width = getW(); trailC.height = getH(); }
+sizeTrail(); addEventListener('resize', sizeTrail);
+const trail = [];
+addEventListener('pointermove', e => { trail.unshift({x: e.clientX, y: e.clientY}); if(trail.length > 15) trail.pop(); });
+function trailLoop() {
+  tx.clearRect(0, 0, trailC.width, trailC.height);
+  if(trail.length > 2 && !reduceMotion) {
+    tx.beginPath();
+    for(let i=1; i<trail.length; i++) {
+      const f = 1 - i/trail.length;
+      tx.strokeStyle = `rgba(255, 196, 0, ${f*.6})`; // Yellow trail
+      tx.lineWidth = f*4;
+      tx.moveTo(trail[i-1].x, trail[i-1].y); tx.lineTo(trail[i].x, trail[i].y);
+    }
+    tx.stroke();
+  }
+  if(trail.length > 0) trail.pop();
+  requestAnimationFrame(trailLoop);
+}
+trailLoop();
+
+/* ============================================================
+   LOADER & ENTRANCE
+============================================================ */
+const statuses = ['CALIBRATING GRAPPLE...', 'SCANNING NETWORK...', 'I AM VENGEANCE.'];
+let progress = 0, si = 0;
+const loadFill = document.getElementById('loadFill'), loadStatus = document.getElementById('loadStatus');
+const loadInt = setInterval(() => {
+  progress = Math.min(100, progress + Math.random()*15);
+  loadFill.style.width = progress + '%';
+  if(progress/100 * statuses.length > si && si < statuses.length-1) { si++; loadStatus.textContent = statuses[si]; }
+  if(progress >= 100) { clearInterval(loadInt); loadStatus.textContent = statuses[statuses.length-1]; setTimeout(launch, 400); }
+}, 100);
+
+function launch() {
+  document.getElementById('loader').classList.add('done');
+  tick();
+  if(reduceMotion) { renderer.render(scene, camera); return; }
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+  tl.to('.hero h1 .row span', { y: 0, rotateX: 0, duration: 1.4, stagger: .15, ease: 'back.out(1.4)' }, .2)
+    .to('.hero-tag', { opacity: 1, duration: 1 }, .5)
+    .to('.hero-sub', { opacity: 1, duration: 1 }, 1)
+    .to('.hero-actions', { opacity: 1, duration: 1 }, 1.2)
+    .to('.hero-meta', { opacity: 1, duration: 1 }, 1.4)
+    .from(camera.position, { z: 24, y: 8, duration: 2.6, ease: 'power3.out' }, 0);
+  scrambleText(document.getElementById('scrambleTag'));
+}
+
+/* ============================================================
+   TEXT SCRAMBLE & SCROLL FX
+============================================================ */
+const h13d = document.getElementById('h13d');
+document.querySelectorAll('.hero h1 .row').forEach((r,i) => r.style.transform = `translateZ(${i*38}px)`);
+addEventListener('pointermove', e => {
+  if(reduceMotion) return;
+  const w = getW();
+  const h = getH();
+  const x = (e.clientX/w) - .5, y = (e.clientY/h) - .5;
+  if (!isNaN(x) && !isNaN(y)) {
+    gsap.to(h13d, { rotateY: x*14, rotateX: -y*10, duration: .8, ease: 'power2.out', transformPerspective: 1100 });
+  }
+});
+gsap.to(h13d, { y: -8, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+
+const CHARS = '!<>-_\\/[]{}—=+*^?#01X';
+function scrambleText(el) {
+  const original = el.dataset.original || el.textContent;
+  el.dataset.original = original;
+  let frame = 0; const total = 40;
+  const timer = setInterval(() => {
+    frame++;
+    el.textContent = original.split('').map((ch, i) => {
+      if(ch === ' ') return ' ';
+      if(i < (frame/total)*original.length) return ch;
+      return CHARS[Math.floor(Math.random()*CHARS.length)];
+    }).join('');
+    if(frame >= total) { el.textContent = original; clearInterval(timer); }
+  }, 30);
+}
+
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' }});
+});
+gsap.utils.toArray('.flip3d').forEach(el => {
+  gsap.to(el, { opacity: 1, rotateX: 0, y: 0, duration: 1.3, ease: 'back.out(1.5)', transformPerspective: 900, scrollTrigger: { trigger: el, start: 'top 86%' }});
+});
+gsap.utils.toArray('.num[data-count]').forEach(el => {
+  const target = parseFloat(el.dataset.count);
+  const isFloat = target % 1 !== 0;
+  ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => {
+    gsap.fromTo(el, { innerText: 0 }, { innerText: target, duration: 2, ease: 'power2.out',
+      onUpdate() { el.textContent = isFloat ? parseFloat(el.innerText).toFixed(2) : Math.floor(el.innerText) + (target>=70?'+': (target===100?'%':'')); },
+      onComplete() { el.textContent = target + (target>=70?'+': (isFloat?'': (target===100?'%':''))); }});
+  }});
+});
+
+const skewSet = gsap.quickSetter('.skew-wrap', 'skewY', 'deg');
+ScrollTrigger.create({ onUpdate(self) {
+  const v = Math.max(-4, Math.min(4, self.getVelocity() / -450));
+  skewSet(v);
+  gsap.to('.skew-wrap', { skewY: 0, duration: .7, ease: 'power3.out', overwrite: true });
+}});
+gsap.utils.toArray('.card').forEach((c, i) => {
+  gsap.fromTo(c, { y: 60*(i%2?1:-.4) }, { y: 0, scrollTrigger: { trigger: '.cards', start: 'top 95%', end: 'top 30%', scrub: 1 }});
+});
+
+/* ============================================================
+   CURSOR TILT & MAGNETIC
+============================================================ */
+const dot = document.querySelector('.cursor-dot'), ring = document.querySelector('.cursor-ring'), label = document.getElementById('cursorLabel');
+let rx = 0, ry = 0;
+addEventListener('pointermove', e => {
+  dot.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+  label.style.left = e.clientX + 'px'; label.style.top = e.clientY + 'px';
+  rx = e.clientX; ry = e.clientY;
+});
+function ringLoop() {
+  const cur = ring.getBoundingClientRect();
+  const cx = cur.left + cur.width/2, cy = cur.top + cur.height/2;
+  
+  // SAFEGUARD: Ensure valid cursor coordinates
+  let nx = cx + ((rx || 0) - cx)*.18;
+  let ny = cy + ((ry || 0) - cy)*.18;
+  if(isNaN(nx)) nx = rx || 0;
+  if(isNaN(ny)) ny = ry || 0;
+  
+  ring.style.transform = `translate(${nx}px, ${ny}px) translate(-50%,-50%)`;
+  requestAnimationFrame(ringLoop);
+}
+ringLoop();
+
+document.querySelectorAll('.hoverable, a, button').forEach(el => {
+  el.addEventListener('pointerenter', () => {
+    ring.classList.add('hovering');
+    if(el.dataset.label) { label.textContent = el.dataset.label; label.style.opacity = 1; }
+  });
+  el.addEventListener('pointerleave', () => { ring.classList.remove('hovering'); label.style.opacity = 0; });
+});
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('pointermove', e => {
+    const r = btn.getBoundingClientRect();
+    gsap.to(btn, { x: (e.clientX - r.left - r.width/2)*.32, y: (e.clientY - r.top - r.height/2)*.32, duration: .4 });
+  });
+  btn.addEventListener('pointerleave', () => gsap.to(btn, { x: 0, y: 0, duration: .6, ease: 'elastic.out(1,.4)' }));
+});
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    if (!isNaN(px) && !isNaN(py)) {
+      card.style.setProperty('--mx', px*100+'%'); card.style.setProperty('--my', py*100+'%');
+      gsap.to(card, { rotateY: (px-.5)*12, rotateX: (.5-py)*12, duration: .5, ease: 'power2.out', transformPerspective: 1000 });
+    }
+  });
+  card.addEventListener('pointerleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: .8, ease: 'elastic.out(1,.5)' }));
+});
+
+/* ============================================================
+   MOBILE NAV TOGGLE
+============================================================ */
+const navToggle = document.getElementById('navToggle');
+const navLinksEl = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinksEl.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinksEl.classList.remove('open');
+  navToggle.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
+</script>
+</body>
+</html>
